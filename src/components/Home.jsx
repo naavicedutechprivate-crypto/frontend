@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../Styles/Home.css';
 import mathbook from '../assets/mathbook.png';
 import alphamaster from '../assets/alphamaster.jpeg';
-import logo from '../assets/logo.png';
+import logo from '../assets/Logo.png';
 import vaagai from '../assets/vaagai.jpeg';
 
 function Home() {
