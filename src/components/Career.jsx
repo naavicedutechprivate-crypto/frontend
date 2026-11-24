@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../Styles/Career.css';
-import logo from '../assets/logo.png';
+import logo from '../assets/Logo.png';
 import mathbook from '../assets/mathbook.png';
 import alphamaster from '../assets/alphamaster.jpeg';
 import vaagai from '../assets/vaagai.jpeg';
