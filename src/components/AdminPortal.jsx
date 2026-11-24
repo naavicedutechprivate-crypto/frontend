@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import '../Styles/AdminPortal.css';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://backend-v1ip.onrender.com';
 const LOCAL_MESSAGES_KEY = 'naavic_contact_messages';
 const LOCAL_GALLERY_KEY = 'naavic_career_gallery';
 const LOCAL_JOBS_KEY = 'naavic_career_jobs';
