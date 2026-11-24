@@ -5,7 +5,7 @@ import '../Styles/Navbar.css';
 
 function Navbar() {
   return (
-    <nav className="navbar" aria-label="Main Navigation">
+    <nav className="navbar">
       {/* Left Side: Logo */}
       <div className="nav-left">
         <NavLink to="/" end aria-label="Naavic Edutech Home">
@@ -15,9 +15,9 @@ function Navbar() {
 
       {/* Center: Company Name */}
       <div className="nav-center">
-        <span className="company-name">
+        <h1 className="company-name">
           NAAVIC EDUTECH PRIVATE LIMITED
-        </span>
+        </h1>
       </div>
 
       {/* Right Side: Navigation List */}
