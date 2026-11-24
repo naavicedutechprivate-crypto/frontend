@@ -5,7 +5,7 @@ import mathbook from '../assets/mathbook.png';
 import alphamaster from '../assets/alphamaster.jpeg';
 import vaagai from '../assets/vaagai.jpeg';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://backend-v1ip.onrender.com';
 const LOCAL_GALLERY_KEY = 'naavic_career_gallery';
 const LOCAL_JOBS_KEY = 'naavic_career_jobs';
 
