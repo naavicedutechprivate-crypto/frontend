@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap');
+
+.notfound-page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  position: relative;
+  min-height: 74vh;
+  padding: 64px 24px;
+  background: linear-gradient(145deg, #f3fcf2 0%, #ffffff 58%, #eaf8e9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.notfound-page h1,
+.notfound-code,
+.notfound-btn-primary,
+.notfound-btn-outline {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+.notfound-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(75, 181, 67, 0.18) 0%, rgba(75, 181, 67, 0) 70%);
+  pointer-events: none;
+}
+
+.notfound-glow-left {
+  top: -90px;
+  left: -80px;
+}
+
+.notfound-glow-right {
+  bottom: -100px;
+  right: -70px;
+}
+
+.notfound-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 580px;
+  background-color: #ffffff;
+  border: 1.5px solid #cde9cb;
+  border-top: 6px solid #4BB543;
+  border-radius: 20px;
+  padding: 44px 36px;
+  text-align: center;
+  box-shadow: 0 16px 38px rgba(75, 181, 67, 0.14);
+  animation: notfoundPop 0.45s cubic-bezier(0.34, 1.32, 0.64, 1);
+}
+
+@keyframes notfoundPop {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.notfound-code {
+  font-size: 76px;
+  font-weight: 900;
+  line-height: 1;
+  color: #4BB543;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+  text-shadow: 0 6px 20px rgba(75, 181, 67, 0.2);
+}
+
+.notfound-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #163a14;
+  margin: 0 0 12px 0;
+}
+
+.notfound-message {
+  font-size: 15.5px;
+  color: #475569;
+  line-height: 1.7;
+  margin: 0 0 28px 0;
+}
+
+.notfound-message code {
+  background-color: #eaf8e9;
+  color: #2b7a24;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #c6eac4;
+}
+
+.notfound-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.notfound-btn-primary {
+  display: inline-block;
+  background-color: #4BB543;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 12px 26px;
+  border-radius: 10px;
+  border: 2px solid #4BB543;
+  box-shadow: 0 8px 18px rgba(75, 181, 67, 0.26);
+  transition: all 0.25s ease;
+}
+
+.notfound-btn-primary:hover {
+  background-color: #369430;
+  border-color: #369430;
+  transform: translateY(-2px);
+}
+
+.notfound-btn-outline {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #4BB543;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 12px 26px;
+  border-radius: 10px;
+  border: 2px solid #4BB543;
+  transition: all 0.25s ease;
+}
+
+.notfound-btn-outline:hover {
+  background-color: #4BB543;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.notfound-quick-links {
+  padding-top: 18px;
+  border-top: 1px solid #e3f4e2;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  font-size: 13.5px;
+}
+
+.notfound-quick-links span {
+  font-weight: 700;
+  color: #1e461b;
+}
+
+.notfound-quick-links a {
+  color: #2b7a24;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.notfound-quick-links a:hover {
+  color: #4BB543;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .notfound-card {
+    padding: 32px 22px;
+  }
+
+  .notfound-code {
+    font-size: 62px;
+  }
+
+  .notfound-title {
+    font-size: 24px;
+  }
+}

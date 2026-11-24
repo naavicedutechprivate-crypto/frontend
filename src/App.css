@@ -1,0 +1,47 @@
+/* Global Reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6; /* Light background for clean look */
+  color: #333333;
+}
+
+/* App Container */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main Content Area */
+.main-content {
+  padding: 40px 20px;
+  flex: 1;
+}
+
+/* Page Card Style (Optional nice wrapper for page contents) */
+.page-content {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-content h2 {
+  color: #4BB543; /* Kilipatchai / Parrot Green heading accent */
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.page-content p {
+  font-size: 16px;
+  color: #666666;
+  line-height: 1.5;
+}
