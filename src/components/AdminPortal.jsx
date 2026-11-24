@@ -513,7 +513,7 @@ function AdminPortal() {
         <div className="admin-brand-box">
           <img src={logo} alt="Naavic Logo" className="admin-sidebar-logo" />
           <p className="admin-brand-name">NAAVIC EDUTECH PRIVATE LIMITED</p>
-          <span className="admin-role-badge">Admin Workspace</span>
+          <span className="admin-role-badge">Admin </span>
         </div>
 
         <nav className="admin-side-nav" aria-label="Admin Navigation">
@@ -522,7 +522,7 @@ function AdminPortal() {
             className={`admin-nav-item ${activeSection === 'jobs' ? 'active' : ''}`}
             onClick={() => setActiveSection('jobs')}
           >
-            <span>Portal Jobs (4 Portals)</span>
+            <span>Jobs</span>
             <span className="nav-count">{jobs.length}</span>
           </button>
 
@@ -576,7 +576,7 @@ function AdminPortal() {
               {activeSection === 'messages' && 'Contact Inquiries'}
             </h1>
             <p className="admin-page-sub">
-              Create, view, edit, and delete records across Naavic Edutech platforms.
+              
             </p>
           </div>
 
@@ -606,7 +606,7 @@ function AdminPortal() {
           <div className="admin-card center-pad">Loading records...</div>
         ) : (
           <>
-            {/* SECTION 1: 4 PORTALS JOBS (SELECTION DROPDOWNS + ADD / VIEW / EDIT / DELETE) */}
+            {/* SECTION 1:JOBS (SELECTION DROPDOWNS + ADD / VIEW / EDIT / DELETE) */}
             {activeSection === 'jobs' && (
               <div className="admin-section-stack">
                 <div className="admin-card">
