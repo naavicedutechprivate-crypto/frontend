@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import logo from '../assets/Logo.png';
 import '../Styles/AdminPortal.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://backend-v1ip.onrender.com';
