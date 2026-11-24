@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../Styles/ContactUs.css';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://backend-v1ip.onrender.com';
+const RAW_API_URL =
+  import.meta.env.VITE_API_URL || 'https://backend-v1ip.onrender.com';
+const API_BASE_URL = String(RAW_API_URL).replace(/\/+$/, '');
 const LOCAL_MESSAGES_KEY = 'naavic_contact_messages';
 
 function ContactUs() {
@@ -67,13 +69,18 @@ function ContactUs() {
 
   const saveLocalFallback = (entry) => {
     try {
-      const existing = JSON.parse(localStorage.getItem(LOCAL_MESSAGES_KEY) || '[]');
+      const raw = localStorage.getItem(LOCAL_MESSAGES_KEY);
+      const parsed = raw ? JSON.parse(raw) : [];
+      const existing = Array.isArray(parsed) ? parsed : [];
       const record = {
         _id: `local_${Date.now()}`,
         ...entry,
         createdAt: new Date().toISOString(),
       };
-      localStorage.setItem(LOCAL_MESSAGES_KEY, JSON.stringify([record, ...existing]));
+      localStorage.setItem(
+        LOCAL_MESSAGES_KEY,
+        JSON.stringify([record, ...existing])
+      );
     } catch {
       // Ignore storage quota issues
     }
@@ -81,9 +88,6 @@ function ContactUs() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
-    setSubmitted(false);
 
     const payload = {
       name: formData.name.trim(),
@@ -92,6 +96,18 @@ function ContactUs() {
       message: formData.message.trim(),
     };
 
+    if (!payload.name || !payload.email || !payload.message) {
+      setError('Please fill in your name, email address, and message.');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    setSubmitted(false);
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
+
     try {
       const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
@@ -99,12 +115,15 @@ function ContactUs() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       });
 
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(result.error || 'Failed to send message. Please try again.');
+        throw new Error(
+          result.error || 'Failed to send message. Please try again.'
+        );
       }
 
       setSubmitted(true);
@@ -115,8 +134,10 @@ function ContactUs() {
         message: '',
       });
     } catch (err) {
-      if (err.message === 'Failed to fetch') {
-        // Save locally so AdminPortal can still read it if backend is offline
+      const isNetworkOrTimeout =
+        err.name === 'AbortError' || err.message === 'Failed to fetch';
+
+      if (isNetworkOrTimeout) {
         saveLocalFallback(payload);
         setSubmitted(true);
         setFormData({
@@ -126,9 +147,10 @@ function ContactUs() {
           message: '',
         });
       } else {
-        setError(err.message);
+        setError(err.message || 'Unable to send message right now.');
       }
     } finally {
+      clearTimeout(timeoutId);
       setLoading(false);
     }
   };
@@ -176,7 +198,11 @@ function ContactUs() {
             <div className="info-block">
               <h3>Official Corporate Website:</h3>
               <p>
-                <a href="https://www.naavicedutech.com" target="_blank" rel="noreferrer">
+                <a
+                  href="https://www.naavicedutech.com"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   www.naavicedutech.com
                 </a>
               </p>
@@ -187,19 +213,31 @@ function ContactUs() {
               <ul className="platforms-contact-list">
                 <li>
                   Mathbook:{' '}
-                  <a href="https://www.mathbook.in" target="_blank" rel="noreferrer">
+                  <a
+                    href="https://www.mathbook.in"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     www.mathbook.in
                   </a>
                 </li>
                 <li>
                   AlphaMaster:{' '}
-                  <a href="https://www.alphamaster.in" target="_blank" rel="noreferrer">
+                  <a
+                    href="https://www.alphamaster.in"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     www.alphamaster.in
                   </a>
                 </li>
                 <li>
                   Vaagai Study:{' '}
-                  <a href="https://www.vaagaistudy.com" target="_blank" rel="noreferrer">
+                  <a
+                    href="https://www.vaagaistudy.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     www.vaagaistudy.com
                   </a>
                 </li>
