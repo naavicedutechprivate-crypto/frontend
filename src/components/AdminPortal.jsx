@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import '../Styles/AdminPortal.css';
 
-const RAW_API_URL =
-  import.meta.env.VITE_API_URL || 'https://backend-v1ip.onrender.com';
-const API_BASE_URL = String(RAW_API_URL).replace(/\/+$/, '');
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://backend-v1ip.onrender.com';
 const LOCAL_MESSAGES_KEY = 'naavic_contact_messages';
 const LOCAL_GALLERY_KEY = 'naavic_career_gallery';
 const LOCAL_JOBS_KEY = 'naavic_career_jobs';
@@ -129,14 +127,11 @@ function AdminPortal() {
     const localGal = readLocalList(LOCAL_GALLERY_KEY);
     const localJobs = readLocalList(LOCAL_JOBS_KEY);
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 12000);
-
     try {
       const [jobsRes, appsRes, contactRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/api/jobs`, { signal: controller.signal }),
-        fetch(`${API_BASE_URL}/api/careers/applications`, { signal: controller.signal }),
-        fetch(`${API_BASE_URL}/api/contact`, { signal: controller.signal }),
+        fetch(`${API_BASE_URL}/api/jobs`),
+        fetch(`${API_BASE_URL}/api/careers/applications`),
+        fetch(`${API_BASE_URL}/api/contact`),
       ]);
 
       if (!jobsRes.ok || !appsRes.ok || !contactRes.ok) {
@@ -162,15 +157,12 @@ function AdminPortal() {
       setJobs(localJobs);
       setMessages(mergeContactMessages([], localMsgs));
       setGallery(localGal);
-      const isNetworkOrTimeout =
-        err.name === 'AbortError' || err.message === 'Failed to fetch';
       setError(
-        isNetworkOrTimeout
-          ? 'Backend server is waking up or offline. Showing saved local records.'
+        err.message === 'Failed to fetch'
+          ? 'Backend server is offline. Showing saved local records.'
           : err.message
       );
     } finally {
-      clearTimeout(timeoutId);
       setLoading(false);
     }
   }, []);
